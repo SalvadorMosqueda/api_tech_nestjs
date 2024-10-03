@@ -81,3 +81,31 @@ Solo los usuarios autenticados podrán gestionar sus propias tareas.
 - El campo `deletedAt` debe ser nulo si la tarea no está eliminada.
 - El campo `status` debe cambiar a `"0"` cuando se marque como eliminada.
 - El borrado de una tarea o usuario no debe eliminar el registro de la base de datos; en su lugar, debe actualizar los campos `status` y `deletedAt`.
+
+## Criterios de Evaluación
+
+1. **Correctitud técnica:**
+   - La API cumple con los requisitos funcionales (CRUD de tareas, autenticación de usuarios).
+   - Uso adecuado de NestJS, incluyendo módulos, servicios, controladores, y providers.
+
+2. **Seguridad:**
+   - Uso adecuado de JWT para asegurar rutas.
+   - Encriptación de contraseñas.
+
+3. **Estructura y estilo del código:**
+   - El código está organizado de manera clara, utilizando las mejores prácticas de NestJS.
+   - Uso de DTOs para la validación de datos de entrada.
+
+4. **Borrado lógico:**
+   - El borrado de tareas y usuarios debe ser lógico (usando los campos `deletedAt` y `status`).
+     
+5. **Swagger: Documentacion correcta:**
+   - El código está documentado de manera clara, utilizando las herramientas proporcionadas por swagger.
+     
+## Instrucciones de Entrega
+
+1. El proyecto debe subirse a un repositorio Git (GitHub, GitLab, etc.) y se debe proporcionar acceso al repositorio. [Mediante el fork]
+2. El repositorio debe incluir un archivo `README.md` con las instrucciones para:
+   - Explicación de cualquier tecnología utilizada.
+   - Cualquier informacion adicional al proyecto
+   
