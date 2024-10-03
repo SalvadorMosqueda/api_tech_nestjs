@@ -37,11 +37,11 @@ $ yarn install
 ```
 
 - Conexión a la base de datos
-- Es requerido tener instalado Docker, en caso contrario puedes usar una instancia de MySQL en tu máquina local.
+<p>Es requerido tener instalado Docker, en caso contrario puedes usar una instancia de MySQL en tu máquina local.</p>
 
 - Iniciar la base de datos
 
-* Verificar que el archivo .env esté configurado correctamente
+<p>Verificar que el archivo .env esté configurado correctamente</p>
 
 ```bash
 docker-compose --env-file .env up -d
