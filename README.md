@@ -36,5 +36,5 @@ JWT_ACCESS_TOKEN_TTL=3600
 $ yarn install
 ```
 - Documentacion de la API
-Para poder visualizar la documentación en la UI de swagger, solo es necesario correr la aplicación en modo desarrollador npm run start:dev para poder tener la siguiente url http://localhost:3000/api
+Para poder visualizar la documentación en la UI de swagger, solo es necesario correr la aplicación en modo desarrollador yarn run start para poder tener la siguiente url http://localhost:3000/api
 
