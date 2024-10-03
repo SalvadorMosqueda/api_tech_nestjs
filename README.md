@@ -31,7 +31,10 @@ JWT_TOKEN_AUDIENCE=localhost:3000
 JWT_TOKEN_ISSUER=localhost:3000
 JWT_ACCESS_TOKEN_TTL=3600
 ```
+- Instalar dependencias
 ```bash
 $ yarn install
 ```
+- Documentacion de la API
+Para poder visualizar la documentación en la UI de swagger, solo es necesario correr la aplicación en modo desarrollador npm run start:dev para poder tener la siguiente url http://localhost:3000/api
 
