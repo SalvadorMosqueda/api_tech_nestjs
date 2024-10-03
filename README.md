@@ -46,16 +46,12 @@ Cada tarea debe tener las siguientes propiedades:
 - `id`: Identificador único (generado automáticamente).
 - `title`: Título de la tarea (string).
 - `description`: Descripción de la tarea (string).
-- `status`: Estado de la tarea (`"open"`, `"in_progress"`, `"done"`, `"deleted"`).
+- `state`: Estado de la tarea (`"open"`, `"in_progress"`, `"done"`).
+- `status`: Estado del usuario (`"0"`, `"1"`), 0 es Eliminado, default 1.
 - `createdAt`: Fecha y hora de creación de la tarea (timestamp).
 - `updatedAt`: Fecha y hora de la última actualización de la tarea (timestamp).
 - `deletedAt`: Fecha y hora en la que la tarea fue eliminada (null si no ha sido eliminada).
 - `userId`: Relación con el usuario que creó la tarea.
-
-**Notas sobre el borrado lógico:**
-- El campo `deletedAt` debe ser nulo si la tarea no está eliminada.
-- El campo `status` debe cambiar a `"deleted"` cuando se marque como eliminada.
-- El borrado de una tarea no debe eliminar el registro de la base de datos; en su lugar, debe actualizar los campos `status` y `deletedAt`.
 
 **Endpoints requeridos:**
 - `GET /tasks`: Obtener la lista de tareas. Debe excluir las tareas con estado `"deleted"`.
@@ -69,9 +65,19 @@ Implementar autenticación básica con **JWT** para usuarios. Cada usuario debe 
 - `id`: Identificador único (generado automáticamente).
 - `username`: Nombre de usuario (string, único).
 - `password`: Contraseña (string, encriptada).
+- `status`: Estado del usuario (`"0"`, `"1"`), 0 es Eliminado, default 1.
+- `createdAt`: Fecha y hora de creación del usuario (timestamp).
+- `updatedAt`: Fecha y hora de la última actualización del usuario (timestamp).
+- `deletedAt`: Fecha y hora en la que el usuario fue eliminada (null si no ha sido eliminada).
 
 **Endpoints requeridos:**
 - `POST /auth/signup`: Registrar un nuevo usuario.
 - `POST /auth/login`: Autenticar a un usuario y devolver un token JWT.
 
 Solo los usuarios autenticados podrán gestionar sus propias tareas.
+
+
+**Notas sobre el borrado lógico:**
+- El campo `deletedAt` debe ser nulo si la tarea no está eliminada.
+- El campo `status` debe cambiar a `"0"` cuando se marque como eliminada.
+- El borrado de una tarea o usuario no debe eliminar el registro de la base de datos; en su lugar, debe actualizar los campos `status` y `deletedAt`.
