@@ -14,6 +14,23 @@
 
 ## Project setup
 
+- [Fork] genera una copia del proyecto en tu cuenta de github mediante un Fork
+- Configurar las variables de entorno
+```bash
+PORT=3001
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=test
+DB_PASSWORD=test123
+DB=taskmanager
+
+STAGE=dev
+
+JWT_SECRET=YOUR_SECRET_KEY_HERE
+JWT_TOKEN_AUDIENCE=localhost:3000
+JWT_TOKEN_ISSUER=localhost:3000
+JWT_ACCESS_TOKEN_TTL=3600
+```
 ```bash
 $ yarn install
 ```
