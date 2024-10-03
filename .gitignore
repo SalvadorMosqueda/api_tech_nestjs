@@ -398,3 +398,11 @@ Temporary Items
 dist
 .webpack
 .serverless/**/*.zip
+
+package-lock.json
+.yarn.lock
+pnpm-lock.yaml
+bun.lockb
+
+.vscode/*
+!.vscode/extensions.json
