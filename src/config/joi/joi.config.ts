@@ -6,6 +6,8 @@ export const joiValidate = Joi.object({
   DB_PORT: Joi.required(),
   DB_USER: Joi.required(),
   DB_PASSWORD: Joi.required(),
-  DB: Joi.required(),
+  DB_NAME: Joi.required(),
   STAGE: Joi.required(),
+  JWT_SECRET: Joi.required(),
+  JWT_ACCESS_TOKEN_TTL: Joi.required(),
 });

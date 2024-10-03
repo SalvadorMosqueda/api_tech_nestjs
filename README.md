@@ -48,7 +48,7 @@ docker-compose --env-file .env up -d
 ```
 
 - Documentación de la API
-  Para poder visualizar la documentación en la UI de swagger, solo es necesario correr la aplicación en modo desarrollador yarn run start para poder tener la siguiente url http://localhost:3000/api
+  Para poder visualizar la documentación en la UI de swagger, solo es necesario correr la aplicación en modo desarrollador yarn run start para poder tener la siguiente url http://localhost:3001
 
 ## Requerimientos Funcionales
 
