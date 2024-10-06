@@ -6,8 +6,9 @@ import { ConfigModule } from '@nestjs/config';
 import { joiValidate } from './config';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
-import { User } from './users/entities/user.entity';
+import { User } from './auth/entities/user.entity';
 import { Task } from './tasks/entities/tasks.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   controllers: [AppController],
@@ -44,6 +45,7 @@ import { Task } from './tasks/entities/tasks.entity';
     }),
     TasksModule,
     UsersModule,
+    AuthModule,
   ],
 })
 export class AppModule {}

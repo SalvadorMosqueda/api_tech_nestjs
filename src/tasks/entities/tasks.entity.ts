@@ -10,8 +10,9 @@ import {
   Default,
   BelongsTo,
 } from 'sequelize-typescript';
+import { User } from 'src/auth/entities/user.entity';
 
-import { User } from 'src/users/entities/user.entity';
+
 
 export enum TaskState {
   open = 'open',
