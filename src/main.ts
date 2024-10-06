@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { INestApplication } from '@nestjs/common';
+import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { NestExpressApplication } from '@nestjs/platform-express';
 // import { HttpExceptionsFilter } from './config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -20,6 +20,14 @@ async function bootstrap() {
   //     errorHttpStatusCode: 422,
   //   }),
   // );
+
+
+    // Configurar ValidationPipe globalmente
+    app.useGlobalPipes(new ValidationPipe({
+      whitelist: true, // Elimina propiedades no definidas en el DTO
+      forbidNonWhitelisted: true, // Lanza un error si se encuentran propiedades no definidas en el DTO
+      transform: true, // Transforma los datos a los tipos esperados
+    }));
 
   const config = new DocumentBuilder()
     .setTitle('Prueba técnica')
