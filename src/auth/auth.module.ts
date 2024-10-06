@@ -11,6 +11,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
   controllers: [AuthController],
   providers: [AuthService],
   imports: [
+    ConfigService,
     SequelizeModule.forFeature([User,Task]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     
