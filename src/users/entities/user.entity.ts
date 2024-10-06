@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType, CreatedAt, UpdatedAt, DeletedAt } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, CreatedAt, UpdatedAt, DeletedAt, HasMany } from 'sequelize-typescript';
+import { Task } from 'src/tasks/entities/tasks.entity';
 
 @Table({
   tableName: 'users', // Nombre de la tabla en la base de datos
@@ -53,4 +54,9 @@ export class User extends Model<User> {
   
   })
   deletedAt: Date;
+
+
+  @HasMany(() => Task)
+  tasks: Task[];
+
 }
