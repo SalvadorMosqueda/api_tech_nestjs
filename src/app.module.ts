@@ -4,6 +4,10 @@ import { AppService } from './app.service';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { ConfigModule } from '@nestjs/config';
 import { joiValidate } from './config';
+import { TasksModule } from './tasks/tasks.module';
+import { UsersModule } from './users/users.module';
+import { User } from './users/entities/user.entity';
+import { Task } from './tasks/entities/tasks.entity';
 
 @Module({
   controllers: [AppController],
@@ -20,8 +24,10 @@ import { joiValidate } from './config';
       port: Number(process.env.DB_PORT),
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      database: process.env.DB,
-      models: [],
+      database: process.env.DB_NAME,
+      autoLoadModels: true,
+      synchronize: true,
+      models: [User, Task],
       pool: {
         max: 128,
         min: 5,
@@ -29,7 +35,15 @@ import { joiValidate } from './config';
         idle: 10000,
       },
       logging: false,
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+      },
     }),
+    TasksModule,
+    UsersModule,
   ],
 })
 export class AppModule {}
