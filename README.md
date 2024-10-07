@@ -27,10 +27,10 @@ STAGE=dev
 JWT_SECRET=PRUEBAGRUPOOPTIMA
 JWT_ACCESS_TOKEN_TTL=3600
 
-````
 
 
-- Conexión a la base de datos
+
+## Conexión a la base de datos
 <p>se dio seguimiento con mysql, asi que es necesario tener una localhost corriendo con los datos de la variable de entorno </p>
 
 - Iniciar la base de datos
