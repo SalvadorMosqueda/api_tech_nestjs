@@ -5,6 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 // import { HttpExceptionsFilter } from './config';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+
 async function bootstrap() {
   const app = await NestFactory.create<
     INestApplication | NestExpressApplication
@@ -37,7 +38,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
-
+  SwaggerModule.setup('api', app, document);
   document.paths = Object.keys(document.paths)
     .sort((a, b) => a.localeCompare(b))
     .reduce((sortedPaths, key) => {
