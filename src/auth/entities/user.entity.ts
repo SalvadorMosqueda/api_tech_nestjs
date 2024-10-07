@@ -7,6 +7,8 @@ import {
   UpdatedAt,
   DeletedAt,
   HasMany,
+  BeforeCreate,
+  BeforeUpdate,
 } from 'sequelize-typescript';
 import { Task } from 'src/tasks/entities/tasks.entity';
 
@@ -63,4 +65,13 @@ export class User extends Model<User> {
 
   @HasMany(() => Task)
   tasks: Task[];
+
+  @BeforeCreate
+  static checkName(user: User) {
+    user.username = user.username.toLowerCase();
+  }
+  @BeforeUpdate
+  static checkNameUpdate(user: User) {
+    user.username = user.username.toLowerCase();
+  }
 }

@@ -8,9 +8,14 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './entities/user.entity';
 import * as bcrypt from 'bcrypt';
 import { loginUserDto } from './dto/login-user.dto';
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from './interfaces/jwt.payload.interface';
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User) private userRepository) {}
+  constructor(
+    @InjectModel(User) private userRepository,
+    private readonly jwtService: JwtService,
+  ) {}
 
   async create(user: CreateUserDto) {
     const userExist = await this.userRepository.findOne({
@@ -19,11 +24,14 @@ export class AuthService {
     if (userExist) throw new ConflictException('El Usuario ya existe');
     try {
       const { password, username } = user;
-      await this.userRepository.create({
+
+      const newUser = await this.userRepository.create({
         username,
         password: bcrypt.hashSync(password, 10),
       });
-      return 'Usuario creado exitosamente';
+      delete newUser.dataValues.password;
+      const { id } = newUser;
+      return { ...newUser.dataValues, token: this.getJwtToken({ username,id }) };
     } catch (error) {
       console.log(error);
       throw new InternalServerErrorException('Error interno del servidor');
@@ -34,15 +42,21 @@ export class AuthService {
     const { username } = user;
     const userExist = await this.userRepository.findOne({
       where: { username, status: '1' },
-      select: ['username', 'password'],
+      attributes: ['id','username', 'password', 'status'],
     });
+
     if (!userExist) throw new ConflictException('Usuario no encontrado');
 
     if (bcrypt.compareSync(user.password, userExist.password)) {
-      
-      return 'Usuario logeado';
+      delete userExist.dataValues.password;
+      const { id } = userExist;
+      return { ...userExist.dataValues, token: this.getJwtToken({ username,id }) };
     } else {
       return 'Usuario o contraseña incorrecta';
     }
+  }
+
+  private getJwtToken(payload: JwtPayload) {
+    return this.jwtService.sign(payload);
   }
 }

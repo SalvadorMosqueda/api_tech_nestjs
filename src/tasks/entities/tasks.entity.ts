@@ -17,7 +17,7 @@ import { User } from 'src/auth/entities/user.entity';
 export enum TaskState {
   open = 'open',
   in_progress = 'in_progress',
-  done = 'donde',
+  done = 'done',
 }
 
 @Table({
